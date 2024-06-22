@@ -1,0 +1,34 @@
+{% set widths = [1920, 1600, 1440, 1366, 1024, 768, 640] %}
+{% set defaultWidth = 768 %}
+{% set defaultAspectRatio = image.aspect|default(1) %}
+{% set width = width is defined ? width : (height is defined ? (height * defaultAspectRatio)|round : defaultWidth) %}
+{% set height = height is defined ? height : (width / defaultAspectRatio)|round %}
+{% set placeholder = placeholderImage(width, height, 'rgba(125, 125, 125, 0.1)') %}
+
+<figure class="{{ css_class }} figure">
+  {% if image.post_mime_type == 'image/svg+xml'%}
+    <img class="figure-image-svg lazyload"
+      src="{{ placeholder }}"
+      width="{{ width }}"
+      height="{{ height }}"
+      data-src="{{ image.src }}"
+      alt="{{ image.alt|e }}"
+    >
+  {% else %}
+    <img
+      src="{{ image.src|resizeDynamic(width)|towebp }}"
+      class="figure-image lazyload"
+      width="{{ width }}"
+      height="{{ height }}"
+      srcset="{{ placeholder }}"
+      data-srcset="{% for width in widths %}{{ image.src|resizeDynamic(width)|towebp  }} {{ width }}w{{ loop.last ? '' : ', ' }}{% endfor %}"
+      data-sizes="auto"
+      alt="{{ image.alt|e }}"
+    >
+  {% endif %}
+  {% if image.caption %}
+    <figcaption>
+      {{ image.caption|e }}
+    </figcaption>
+  {% endif %}
+</figure>
