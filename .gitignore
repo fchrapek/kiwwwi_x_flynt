@@ -1,0 +1,63 @@
+### WordPress ###
+# Configuration
+wp-config-db.php
+
+# Content directories
+wp-content/uploads/
+wp-content/plugins/
+wp-content/mu-plugins/
+wp-content/upgrade/
+wp-content/cache/
+wp-content/languages/
+
+# Exclude everything except themes
+/wp-content/*
+!/wp-content/themes/
+wp-content/themes/*/node_modules/
+wp-content/themes/*/vendor/
+
+# Log files
+*.log
+
+# htaccess
+/.htaccess
+
+# System files
+*.DS_Store
+.DS_Store?
+/.well-known
+
+# IDE and build directories
+.idea/
+.vscode/
+node_modules/
+vendor/
+dist/
+.cache/
+bower_components/
+
+# Environment files
+.env
+.env.*.local
+
+# Temporary and backup files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Package managers
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+composer.phar
+
+# OS-specific files
+Thumbs.db
+ehthumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Others
+*-tmpchunk*

@@ -1,0 +1,19 @@
+{% set url = button.url %}
+{% set title = button.title %}
+{% set target = button.target|default('_self') %}
+{% set type = button.type|default('') %}
+{% set buttonClass = 'button' %}
+
+{% if type == 'primary' %}
+  {% set buttonClass = buttonClass ~ ' --primary' %}
+{% elseif type == 'secondary' %}
+  {% set buttonClass = buttonClass ~ ' --secondary' %}
+{% endif %}
+
+<a
+  href="{{ url }}"
+  title="{{ title }}"
+  target="{{ target }}"
+  class="{{ buttonClass }}">
+    {{ title }}
+</a>
