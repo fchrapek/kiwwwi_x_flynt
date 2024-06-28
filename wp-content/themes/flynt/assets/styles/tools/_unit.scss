@@ -1,0 +1,23 @@
+/* stylelint-disable */
+
+@use "sass:math";
+
+$root-font-size: 16px;
+
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, ($number * 0 + 1));
+  }
+
+  @return $number;
+}
+
+@function rem($value, $base-value: $root-font-size) {
+  $value: math.div(strip-unit($value), strip-unit($base-value)) * 1rem;
+
+  @if $value == 0 {
+    $value: 0;
+  }
+
+  @return $value;
+}

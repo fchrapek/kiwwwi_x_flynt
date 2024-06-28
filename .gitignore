@@ -31,7 +31,6 @@ wp-content/themes/*/vendor/
 .idea/
 .vscode/
 node_modules/
-vendor/
 dist/
 .cache/
 bower_components/

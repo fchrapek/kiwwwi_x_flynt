@@ -1,0 +1,41 @@
+/* stylelint-disable */
+@use "sass:map";
+
+@function bp-val($name) {
+  @if type-of($name) == "number" {
+    @return $name;
+  }
+
+  $val: map.get($breakpoints, $name);
+
+  @if not $val {
+    @error 'Breakpoint #{$name} not found';
+  }
+
+  @return $val;
+}
+
+@mixin bp($name) {
+  $val: bp-val($name);
+
+  @media (min-width: $val) {
+    @content;
+  }
+}
+
+@mixin bp-down($name) {
+  $val: bp-val($name);
+
+  @media (max-width: $val - 0.02) {
+    @content;
+  }
+}
+
+@mixin bp-between($min, $max) {
+  $valMin: bp-val($min);
+  $valMax: bp-val($max);
+
+  @media (min-width: $valMin - 0.02) and (max-width: $valMax - 0.02) {
+    @content;
+  }
+}

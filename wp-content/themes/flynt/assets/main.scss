@@ -1,8 +1,10 @@
-@import
-  'styles/reset',
-  'styles/variables',
-  'styles/fonts',
-  'styles/base';
+@import "styles/tools/unit"; //  this one must be imported explicitly
+@import "styles/tools/*";
+@import "styles/settings/*";
+@import "styles/settings/base"; // this one must be imported explicitly
+@import "styles/elements/*";
+@import "styles/vendor/*";
+@import "styles/components/*";
 
 // stylelint-disable-next-line scss/load-no-partial-leading-underscore, scss/at-import-partial-extension-disallowed-list
-@import '../Components/**/_style.scss';
+@import "../Components/**/_style.scss";
